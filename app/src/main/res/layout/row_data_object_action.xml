@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:id="@+id/data_object_action_item"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:background="@drawable/file_icon_circle_grey"
+        android:id="@+id/data_object_action_background"
+        android:layout_width="@dimen/file_icon_size"
+        android:layout_height="@dimen/file_icon_size"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+    <ImageView
+        android:id="@+id/data_object_action_icon"
+        android:src="@drawable/ic_action_rename"
+        android:layout_alignTop="@id/data_object_action_background"
+        android:layout_alignLeft="@id/data_object_action_background"
+        android:layout_width="@dimen/file_icon_size"
+        android:layout_height="@dimen/file_icon_size"/>
+
+    <TextView
+        android:alpha="0.87"
+        android:ellipsize="end"
+        android:id="@+id/data_object_action_title"
+        android:lines="1"
+        android:text="Rename"
+        android:textColor="@color/material_black"
+        android:textSize="@dimen/file_title_text_size"
+        android:layout_toRightOf="@id/data_object_action_icon"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

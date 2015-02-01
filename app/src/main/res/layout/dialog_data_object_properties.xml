@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/data_object_title"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="@dimen/dialog_text_margin_horizontal"
+        android:layout_marginRight="@dimen/dialog_text_margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:text="Test"
+        android:textSize="@dimen/file_title_text_size"/>
+
+    <TextView
+        android:id="@+id/data_object_path"
+        android:layout_below="@id/data_object_title"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="@dimen/dialog_text_margin_horizontal"
+        android:layout_marginRight="@dimen/dialog_text_margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:text="Test"
+        android:textSize="@dimen/file_title_text_size"/>
+
+    <TextView
+        android:id="@+id/data_object_modification_date"
+        android:layout_below="@id/data_object_path"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="@dimen/dialog_text_margin_horizontal"
+        android:layout_marginRight="@dimen/dialog_text_margin_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:text="Test"
+        android:textSize="@dimen/file_title_text_size"/>
+
+    <Button
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/data_object_dialog_button"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/data_object_modification_date"
+        android:layout_height="@dimen/dialog_button_height"
+        android:layout_margin="@dimen/dialog_button_margin_horizontal"
+        android:layout_marginBottom="@dimen/dialog_button_margin_bottom"
+        android:layout_marginTop="@dimen/dialog_button_margin_top"
+        android:layout_width="@dimen/dialog_button_width"
+        android:text="@string/ok"
+        android:textColor="@color/material_teal_500"/>
+
+</RelativeLayout>
