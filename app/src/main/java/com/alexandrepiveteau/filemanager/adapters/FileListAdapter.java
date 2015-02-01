@@ -88,11 +88,17 @@ public class FileListAdapter extends RecyclerView.Adapter<ViewHolder> {
         int totalFolders = mFolders.size();
         int positionTitleFiles = 1 + totalFolders;
         if(position == positionTitleFolders) {
-            return mContext.getString(R.string.folders);
+            if(mFolders.size() > 0)
+                return mContext.getString(R.string.folders);
+            else
+                return mContext.getString(R.string.no_folders);
         } else if (position < positionTitleFiles) {
             return mFolders.get(position - 1);
         } else if (position == positionTitleFiles) {
-            return mContext.getString(R.string.files);
+            if(mFiles.size() > 0)
+                return mContext.getString(R.string.files);
+            else
+                return mContext.getString(R.string.no_files);
         } else {
             return mFiles.get(position - mFolders.size() - 2);
         }

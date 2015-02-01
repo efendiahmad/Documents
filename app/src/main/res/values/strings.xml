@@ -28,5 +28,7 @@
     <string name="action_cancelled">Action cancelled !</string>
     <string name="select_action">Select action:</string>
     <string name="rename_too_many_items">You can only rename 1 item at a time!</string>
+    <string name="no_folders">No folders to show</string>
+    <string name="no_files">No files to show</string>
 
 </resources>
