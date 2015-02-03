@@ -36,6 +36,8 @@ public class ActionBarManager {
             return mContext.getString(R.string.root);
         } else if (mFile.getPath().equals(Environment.getExternalStorageDirectory().getPath())) {
             return mContext.getString(R.string.internal_storage);
+        } else if (mFile.getPath().equals(Environment.getExternalStorageDirectory().getPath() + "/DCIM")) {
+            return mContext.getString(R.string.dcim);
         }
         else {
             return mFile.getName();
