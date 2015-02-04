@@ -50,6 +50,14 @@ public class ActionBarManager {
         updateTitle();
     }
 
+    public void resetContextualActionButtonImage() {
+        mContextualFloatingActionButton.setBackgroundResource(R.drawable.ic_overflow_more);
+    }
+
+    public void setContextualActionButtonImage(int resource) {
+        mContextualFloatingActionButton.setBackgroundResource(resource);
+    }
+
     public void setContextualFloatingActionButtonVisibility(boolean visibility) {
         if(visibility) {
             mContextualFloatingActionButton.show(true);

@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.alexandrepiveteau.filemanager.R;
@@ -25,6 +26,7 @@ import com.alexandrepiveteau.filemanager.dialogs.listeners.OnDataObjectActionLis
 import com.alexandrepiveteau.filemanager.files.DataObject;
 import com.alexandrepiveteau.filemanager.files.DataObjectAction;
 import com.alexandrepiveteau.filemanager.managers.ActionBarManager;
+import com.alexandrepiveteau.filemanager.ui.listeners.OnDataActionPerformedListener;
 import com.alexandrepiveteau.filemanager.utils.DataObjectActionsUtils;
 import com.alexandrepiveteau.filemanager.utils.DataObjectOpenerUtils;
 import com.melnykov.fab.FloatingActionButton;
@@ -34,7 +36,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends Activity implements View.OnClickListener, OnDataObjectActionListener,OnDataObjectClickListener, OnDataObjectInfoClickListener, OnDataObjectLongClickListener {
+public class MainActivity extends Activity implements
+        View.OnClickListener,
+        OnDataObjectActionListener,
+        OnDataObjectClickListener,
+        OnDataObjectInfoClickListener,
+        OnDataObjectLongClickListener,
+        OnDataActionPerformedListener {
 
     private static final String KEY_DIRECTORY = "KEY_DIRECTORY";
 
@@ -127,16 +135,27 @@ public class MainActivity extends Activity implements View.OnClickListener, OnDa
     }
 
     @Override
+    public void onDataActionCancelled() {
+        mItemsSelected.clear();
+        Toast.makeText(this, R.string.action_cancelled, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onDataActionPerformed() {
+        mItemsSelected.clear();
+        setDocumentsList(dir);
+    }
+
+    @Override
     public void onDataObjectActionClick(DataObjectAction action) {
         mActionBarManager.setContextualFloatingActionButtonVisibility(false);
         mActionBarManager.setFloatingActionButtonVisibility(true);
         switch (action.getAction()) {
             case RENAME:
-                DataObjectActionsUtils.renameDataObject(this, mItemsSelected);
+                DataObjectActionsUtils.renameDataObject(this, mItemsSelected, this);
                 break;
         }
-        mItemsSelected.clear();
-        setDocumentsList(dir);
+        //setDocumentsList(dir);
     }
 
     @Override
