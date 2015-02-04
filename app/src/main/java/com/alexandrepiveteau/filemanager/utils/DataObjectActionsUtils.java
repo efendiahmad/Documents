@@ -25,11 +25,12 @@ public class DataObjectActionsUtils {
             return;
         }
 
+        // TODO : Modify the values that appear in the Dialog (name, etc.)
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Title");
+        builder.setTitle(R.string.rename);
         final EditText input = new EditText(context);
         builder.setView(input);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String mText = input.getText().toString();
@@ -39,7 +40,7 @@ public class DataObjectActionsUtils {
             }
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

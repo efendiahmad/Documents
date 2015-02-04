@@ -31,5 +31,6 @@
     <string name="no_folders">There are no folders to show</string>
     <string name="no_files">There are no files to show</string>
     <string name="dcim">Camera</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
