@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class DataObject {
 
-    public static enum ACTION {COPY, CUT, RENAME, DELETE};
+    public static enum ACTION {COPY, CUT, RENAME, DELETE, NONE};
 
     private int backgroundIcon;
     private String description;

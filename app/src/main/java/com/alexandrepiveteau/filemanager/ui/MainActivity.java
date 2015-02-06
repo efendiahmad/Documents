@@ -46,6 +46,7 @@ public class MainActivity extends Activity implements
 
     private static final String KEY_DIRECTORY = "KEY_DIRECTORY";
 
+    private DataObject.ACTION mActionPending = DataObject.ACTION.NONE;
     private boolean isActionPending;
     private List<DataObject> mItemsSelected;
 
@@ -78,9 +79,39 @@ public class MainActivity extends Activity implements
                 }
                 break;
             case R.id.contextual_fab:
-                DataObjectActionDialog dataObjectActionDialog = new DataObjectActionDialog(this);
-                dataObjectActionDialog.setDataObjectActionListener(this);
-                dataObjectActionDialog.show();
+                if(isActionPending) {
+                    switch (mActionPending) {
+                        case CUT:
+                            List<File> mCutFiles = new ArrayList<File>();
+                            for(DataObject object : mItemsSelected) {
+                                mCutFiles.add(new File(dir, object.getName()));
+                            }
+                            DataObjectActionsUtils.cutDataObjects(this, mItemsSelected, mCutFiles, this);
+                            mActionPending = DataObject.ACTION.NONE;
+                            isActionPending = false;
+                            mActionBarManager.setFloatingActionButtonVisibility(true);
+                            mActionBarManager.setContextualFloatingActionButtonVisibility(false);
+                            mActionBarManager.resetContextualActionButtonImage();
+                            break;
+                        case COPY:
+                            List<File> mCopyFiles = new ArrayList<File>();
+                            for(DataObject object : mItemsSelected) {
+                                mCopyFiles.add(new File(dir, object.getName()));
+                            }
+                            DataObjectActionsUtils.copyDataObjects(this, mItemsSelected, mCopyFiles, this);
+                            mActionPending = DataObject.ACTION.NONE;
+                            isActionPending = false;
+                            mActionBarManager.setFloatingActionButtonVisibility(true);
+                            mActionBarManager.setContextualFloatingActionButtonVisibility(false);
+                            mActionBarManager.resetContextualActionButtonImage();
+                            break;
+                    }
+                }
+                else {
+                    DataObjectActionDialog dataObjectActionDialog = new DataObjectActionDialog(this);
+                    dataObjectActionDialog.setDataObjectActionListener(this);
+                    dataObjectActionDialog.show();
+                }
                 break;
         }
     }
@@ -148,13 +179,36 @@ public class MainActivity extends Activity implements
 
     @Override
     public void onDataObjectActionClick(DataObjectAction action) {
-        mActionBarManager.setContextualFloatingActionButtonVisibility(false);
-        mActionBarManager.setFloatingActionButtonVisibility(true);
+        boolean showContFab = false;
+        boolean showFab = false;
         switch (action.getAction()) {
+            case CUT:
+                isActionPending = true;
+                mActionPending = DataObject.ACTION.CUT;
+                mActionBarManager.setContextualActionButtonImage(R.drawable.ic_action_paste);
+                showFab = true;
+                showContFab = true;
+                break;
+            case COPY:
+                isActionPending = true;
+                mActionPending = DataObject.ACTION.COPY;
+                mActionBarManager.setContextualActionButtonImage(R.drawable.ic_action_paste);
+                showFab = true;
+                showContFab = true;
+                break;
+            case DELETE:
+                showFab = true;
+                showContFab = false;
+                DataObjectActionsUtils.deleteDataObjects(this, mItemsSelected, this);
+                break;
             case RENAME:
+                showFab = true;
+                showContFab = false;
                 DataObjectActionsUtils.renameDataObject(this, mItemsSelected, this);
                 break;
         }
+        mActionBarManager.setContextualFloatingActionButtonVisibility(showContFab);
+        mActionBarManager.setFloatingActionButtonVisibility(showFab);
         //setDocumentsList(dir);
     }
 
