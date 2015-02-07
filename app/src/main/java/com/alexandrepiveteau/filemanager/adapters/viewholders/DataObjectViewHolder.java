@@ -59,9 +59,9 @@ public class DataObjectViewHolder extends RecyclerView.ViewHolder implements Vie
         mIsSelected = isSelected;
 
         if(isSelected) {
-            mFileItem.setPressed(true);
+            mFileItem.setBackgroundResource(R.color.material_grey_500);
         } else {
-            mFileItem.setPressed(false);
+            mFileItem.setBackgroundResource(R.drawable.ripple_default_background);
         }
 
         mBackgroundImage.setImageResource(mDataObject.getBackgroundIcon());
