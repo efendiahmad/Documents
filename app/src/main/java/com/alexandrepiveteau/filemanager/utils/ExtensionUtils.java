@@ -10,7 +10,10 @@ import java.io.File;
 public class ExtensionUtils {
 
     private static String [] APK_EXTENSIONS = {".apk"};
-    private static String [] MUSIC_EXTENSIONS = {".m4a", ".mp3"};
+    private static String [] MUSIC_EXTENSIONS = {".3gp", ".act", ".aiff", ".aac", ".amr", ".au",
+            ".awb", ".dct", ".dss", ".dvf", ".flac", ".gsm", ".iklax", ".ivs", ".m4a", ".mmf",
+            ".mp3", ".mpc", ".msv", ".oga", ".ogg", ".opus", ".ra", ".rm", ".sln", ".tta", ".vox",
+            ".wav", ".wma", ".wv"};
     private static String [] MOVIES_EXTENSIONS = {".3g2", ".3gp", ".mp4"};
     private static String [] PDF_EXTENSIONS = {".pdf"};
     private static String [] PHOTOS_EXTENSIONS = {".jpeg", ".jpg", ".png"};
