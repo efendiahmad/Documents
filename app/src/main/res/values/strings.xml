@@ -32,5 +32,6 @@
     <string name="no_files">There are no files to show</string>
     <string name="dcim">Camera</string>
     <string name="cancel">Cancel</string>
+    <string name="exit_application">Press back again to exit!</string>
 
 </resources>

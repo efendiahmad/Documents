@@ -33,6 +33,7 @@ import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -58,6 +59,7 @@ public class MainActivity extends Activity implements
 
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ActionBarManager mActionBarManager;
+    private Calendar mBackPressedCalendar;
     private DrawerLayout mDrawerLayout;
     private FileListAdapter mFilesAdapter;
     private FloatingActionButton mFloatingActionButton;
@@ -123,6 +125,8 @@ public class MainActivity extends Activity implements
 
         dir = Environment.getExternalStorageDirectory();
 
+        mBackPressedCalendar = Calendar.getInstance();
+
         mContextualFloatingActionButton = (FloatingActionButton) findViewById(R.id.contextual_fab);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
@@ -156,6 +160,18 @@ public class MainActivity extends Activity implements
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mActionBarDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Calendar calendar = Calendar.getInstance();
+        if((calendar.getTimeInMillis() - mBackPressedCalendar.getTimeInMillis()) < 2000) {
+            finish();
+        }
+        else {
+            Toast.makeText(this, R.string.exit_application, Toast.LENGTH_SHORT).show();
+            mBackPressedCalendar = calendar;
+        }
     }
 
 
