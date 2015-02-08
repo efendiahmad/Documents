@@ -11,6 +11,7 @@ public class ExtensionUtils {
 
     private static String [] APK_EXTENSIONS = {".apk"};
     private static String [] COMPRESSED_EXTENSIONS = {".7z", ".zip"};
+    private static String [] DOCUMENTS_EXTENSIONS = {".doc", ".docx", ".odm", ".odt", ".oth", ".ott"};
     private static String [] MUSIC_EXTENSIONS = {".3gp", ".act", ".aiff", ".aac", ".amr", ".au",
             ".awb", ".dct", ".dss", ".dvf", ".flac", ".gsm", ".iklax", ".ivs", ".m4a", ".mmf",
             ".mp3", ".mpc", ".msv", ".oga", ".ogg", ".opus", ".ra", ".rm", ".sln", ".tta", ".vox",
@@ -18,6 +19,8 @@ public class ExtensionUtils {
     private static String [] MOVIES_EXTENSIONS = {".3g2", ".3gp", ".mp4"};
     private static String [] PDF_EXTENSIONS = {".pdf"};
     private static String [] PHOTOS_EXTENSIONS = {".jpeg", ".jpg", ".png"};
+    private static String [] PRESENTATIONS_EXTENSIONS = {".odg", ".odp", ".otp", ".ppt", ".pptx"};
+    private static String [] SHEETS_EXTENSIONS = {".ods", ".ots", ".xls", ".xlsx"};
 
     public static int getExtensionBackground(File file) {
         if(file.isDirectory()) {
@@ -26,6 +29,8 @@ public class ExtensionUtils {
             return R.drawable.file_icon_circle_green;
         } else if (containsExtension(file.getPath(), COMPRESSED_EXTENSIONS)) {
             return R.drawable.file_icon_circle_grey;
+        } else if (containsExtension(file.getPath(), DOCUMENTS_EXTENSIONS)) {
+            return R.drawable.file_icon_circle_blue;
         } else if (containsExtension(file.getPath(), MUSIC_EXTENSIONS)) {
             return R.drawable.file_icon_circle_orange;
         } else if (containsExtension(file.getPath(), MOVIES_EXTENSIONS)) {
@@ -34,6 +39,10 @@ public class ExtensionUtils {
             return R.drawable.file_icon_circle_red;
         } else if (containsExtension(file.getPath(), PHOTOS_EXTENSIONS)) {
             return R.drawable.file_icon_circle_blue;
+        } else if (containsExtension(file.getPath(), PRESENTATIONS_EXTENSIONS)) {
+            return R.drawable.file_icon_circle_yellow;
+        } else if (containsExtension(file.getPath(), SHEETS_EXTENSIONS)) {
+            return R.drawable.file_icon_circle_green;
         } else {
             return R.drawable.file_icon_circle_yellow;
         }
@@ -46,6 +55,8 @@ public class ExtensionUtils {
             return R.drawable.ic_file_apk;
         } else if (containsExtension(file.getPath(), COMPRESSED_EXTENSIONS)) {
             return R.drawable.ic_file_compressed;
+        } else if (containsExtension(file.getPath(), DOCUMENTS_EXTENSIONS)) {
+            return R.drawable.ic_file_document;
         } else if (containsExtension(file.getPath(), MUSIC_EXTENSIONS)) {
             return R.drawable.ic_file_music;
         } else if (containsExtension(file.getPath(), MOVIES_EXTENSIONS)) {
@@ -54,6 +65,10 @@ public class ExtensionUtils {
             return R.drawable.ic_file_pdf;
         } else if (containsExtension(file.getPath(), PHOTOS_EXTENSIONS)) {
             return R.drawable.ic_file_photo;
+        } else if (containsExtension(file.getPath(), PRESENTATIONS_EXTENSIONS)) {
+            return R.drawable.ic_file_presentation;
+        } else if (containsExtension(file.getPath(), SHEETS_EXTENSIONS)) {
+            return R.drawable.ic_file_sheet;
         } else {
             return R.drawable.ic_file_default;
         }
