@@ -10,6 +10,7 @@ import java.io.File;
 public class ExtensionUtils {
 
     private static String [] APK_EXTENSIONS = {".apk"};
+    private static String [] COMPRESSED_EXTENSIONS = {".7z", ".zip"};
     private static String [] MUSIC_EXTENSIONS = {".3gp", ".act", ".aiff", ".aac", ".amr", ".au",
             ".awb", ".dct", ".dss", ".dvf", ".flac", ".gsm", ".iklax", ".ivs", ".m4a", ".mmf",
             ".mp3", ".mpc", ".msv", ".oga", ".ogg", ".opus", ".ra", ".rm", ".sln", ".tta", ".vox",
@@ -23,7 +24,9 @@ public class ExtensionUtils {
             return R.drawable.file_icon_circle_grey;
         } else if (containsExtension(file.getPath(), APK_EXTENSIONS)) {
             return R.drawable.file_icon_circle_green;
-        }else if (containsExtension(file.getPath(), MUSIC_EXTENSIONS)) {
+        } else if (containsExtension(file.getPath(), COMPRESSED_EXTENSIONS)) {
+            return R.drawable.file_icon_circle_grey;
+        } else if (containsExtension(file.getPath(), MUSIC_EXTENSIONS)) {
             return R.drawable.file_icon_circle_orange;
         } else if (containsExtension(file.getPath(), MOVIES_EXTENSIONS)) {
             return R.drawable.file_icon_circle_red;
@@ -41,7 +44,9 @@ public class ExtensionUtils {
             return R.drawable.ic_file_folder;
         } else if (containsExtension(file.getPath(), APK_EXTENSIONS)) {
             return R.drawable.ic_file_apk;
-        }else if (containsExtension(file.getPath(), MUSIC_EXTENSIONS)) {
+        } else if (containsExtension(file.getPath(), COMPRESSED_EXTENSIONS)) {
+            return R.drawable.ic_file_compressed;
+        } else if (containsExtension(file.getPath(), MUSIC_EXTENSIONS)) {
             return R.drawable.ic_file_music;
         } else if (containsExtension(file.getPath(), MOVIES_EXTENSIONS)) {
             return R.drawable.ic_file_movie;
