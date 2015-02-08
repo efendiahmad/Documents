@@ -29,6 +29,7 @@ import com.alexandrepiveteau.filemanager.managers.ActionBarManager;
 import com.alexandrepiveteau.filemanager.ui.listeners.OnDataActionPerformedListener;
 import com.alexandrepiveteau.filemanager.utils.DataObjectActionsUtils;
 import com.alexandrepiveteau.filemanager.utils.DataObjectOpenerUtils;
+import com.alexandrepiveteau.filemanager.utils.ZipUtils;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
@@ -230,12 +231,19 @@ public class MainActivity extends Activity implements
 
     @Override
     public void onDataItemClick(DataObject dataObject) {
-        File oldDir = dir;
-        try {
-            dir = dataObject.getFile();
+        if(ZipUtils.isZipDataObject(dataObject)) {
+            ZipUtils.unzipDataObject(dataObject, this);
             setDocumentsList(dir);
-        } catch (Exception e) {
-            dir = DataObjectOpenerUtils.openFile(oldDir, dir, this);
+            return;
+        }
+        else {
+            File oldDir = dir;
+            try {
+                dir = dataObject.getFile();
+                setDocumentsList(dir);
+            } catch (Exception e) {
+                dir = DataObjectOpenerUtils.openFile(oldDir, dir, this);
+            }
         }
     }
 

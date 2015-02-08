@@ -40,6 +40,7 @@
     <string name="access_denied">Sorry, but you don\'t have the rights to perform this action.</string>
     <string name="action_cancelled">Action cancelled !</string>
     <string name="exit_application">Press back again to exit!</string>
+    <string name="file_unzipped_at">File was successfully unzipped at</string>
     <string name="install_compatible_app">Could not open the file. You should install some compatible apps first.</string>
     <string name="rename_too_many_items">You can only rename 1 item at a time!</string>
 
