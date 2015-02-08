@@ -141,6 +141,7 @@ public class MainActivity extends Activity implements
 
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
         mActionBarManager = new ActionBarManager(this,mContextualFloatingActionButton , mFloatingActionButton, mTitle);
+        mDrawerLayout.setStatusBarBackground(R.color.material_light_blue_700);
 
         isActionPending = false;
         mItemsSelected = new ArrayList<DataObject>();
