@@ -50,6 +50,8 @@ public class ExtensionUtils {
             return R.drawable.ic_file_music;
         } else if (containsExtension(file.getPath(), MOVIES_EXTENSIONS)) {
             return R.drawable.ic_file_movie;
+        } else if (containsExtension(file.getPath(), PDF_EXTENSIONS)) {
+            return R.drawable.ic_file_pdf;
         } else if (containsExtension(file.getPath(), PHOTOS_EXTENSIONS)) {
             return R.drawable.ic_file_photo;
         } else {
