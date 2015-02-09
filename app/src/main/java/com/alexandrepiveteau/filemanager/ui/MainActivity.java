@@ -1,13 +1,16 @@
 package com.alexandrepiveteau.filemanager.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.Toolbar;
 
 import com.alexandrepiveteau.filemanager.R;
 import com.alexandrepiveteau.filemanager.adapters.FileListAdapter;
+import com.alexandrepiveteau.filemanager.adapters.NavigationDrawerAdapter;
 import com.alexandrepiveteau.filemanager.adapters.listeners.OnDataObjectClickListener;
 import com.alexandrepiveteau.filemanager.adapters.listeners.OnDataObjectInfoClickListener;
 import com.alexandrepiveteau.filemanager.adapters.listeners.OnDataObjectLongClickListener;
@@ -27,8 +31,10 @@ import com.alexandrepiveteau.filemanager.files.DataObject;
 import com.alexandrepiveteau.filemanager.files.DataObjectAction;
 import com.alexandrepiveteau.filemanager.managers.ActionBarManager;
 import com.alexandrepiveteau.filemanager.ui.listeners.OnDataActionPerformedListener;
+import com.alexandrepiveteau.filemanager.ui.listeners.OnNavigationItemClickListener;
 import com.alexandrepiveteau.filemanager.utils.DataObjectActionsUtils;
 import com.alexandrepiveteau.filemanager.utils.DataObjectOpenerUtils;
+import com.alexandrepiveteau.filemanager.utils.FilesUtils;
 import com.alexandrepiveteau.filemanager.utils.ZipUtils;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -44,7 +50,8 @@ public class MainActivity extends Activity implements
         OnDataObjectClickListener,
         OnDataObjectInfoClickListener,
         OnDataObjectLongClickListener,
-        OnDataActionPerformedListener {
+        OnDataActionPerformedListener,
+        OnNavigationItemClickListener {
 
     private static final String KEY_DIRECTORY = "KEY_DIRECTORY";
 
@@ -64,8 +71,8 @@ public class MainActivity extends Activity implements
     private DrawerLayout mDrawerLayout;
     private FileListAdapter mFilesAdapter;
     private FloatingActionButton mFloatingActionButton;
-    private LinearLayoutManager mLinearLayoutManager;
     private RecyclerView mListView;
+    private RecyclerView mNavigationListView;
     private TextView mTitle;
     private Toolbar mToolbar;
 
@@ -132,12 +139,17 @@ public class MainActivity extends Activity implements
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         mListView = (RecyclerView) findViewById(R.id.files_list);
+        mNavigationListView = (RecyclerView) findViewById(R.id.navigation_list);
         mTitle = (TextView) findViewById(R.id.toolbar_title);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        mLinearLayoutManager = new LinearLayoutManager(this);
-        mListView.setLayoutManager(mLinearLayoutManager);
+        mListView.setLayoutManager(new LinearLayoutManager(this));
         mListView.setHasFixedSize(true);
+
+        mNavigationListView.setLayoutManager(new LinearLayoutManager(this));
+        mNavigationListView.setHasFixedSize(true);
+
+        mNavigationListView.setAdapter(new NavigationDrawerAdapter(this));
 
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
         mActionBarManager = new ActionBarManager(this,mContextualFloatingActionButton , mFloatingActionButton, mTitle);
@@ -284,6 +296,38 @@ public class MainActivity extends Activity implements
                 mActionBarManager.setFloatingActionButtonVisibility(true);
             }
         }
+    }
+
+    @Override
+    public void onNavigationItemClicked(int position) {
+        File oldDir = dir;
+        switch (position) {
+            case 1:
+                dir = FilesUtils.INTERNAL_STORAGE;
+                break;
+            case 2:
+                dir = FilesUtils.DCIM;
+                break;
+            case 3:
+                dir = FilesUtils.MUSIC;
+                break;
+            case 4:
+                dir = FilesUtils.DOWNLOADS;
+                break;
+            case 5:
+                Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.alexandrepiveteau.filemanager"));
+                startActivity(i);
+                return;
+        }
+        try {
+            setDocumentsList(dir);
+        }
+        catch (Exception e) {
+            dir = oldDir;
+            Toast.makeText(this, R.string.access_denied, Toast.LENGTH_SHORT).show();
+        }
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 
     @Override

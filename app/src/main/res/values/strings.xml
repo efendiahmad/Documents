@@ -5,6 +5,7 @@
     <string name="app_name">Documents</string>
     <string name="hello_world">Hello world!</string>
     <string name="my_files">My files</string>
+    <string name="rate_on_play_store">Rate on the Play Store</string>
 
     <!--String for the action bar-->
     <string name="action_settings">Settings</string>
@@ -32,8 +33,10 @@
     <string name="no_folders">There are no folders to show</string>
 
     <!--Strings for some particular folders name-->
-    <string name="dcim">Camera</string>
+    <string name="dcim">DCIM</string>
+    <string name="downloads">Downloads</string>
     <string name="internal_storage">Internal storage</string>
+    <string name="music">Music</string>
     <string name="root">Storage root</string>
 
     <!--String for the informative Toasts-->
