@@ -20,10 +20,10 @@ public class DataObjectActionsUtils {
 
     public static void cutDataObjects(Context context, final List<DataObject> dataObjects, final List<File> dest ,final OnDataActionPerformedListener listener) {
         DataObjectActionsCopyUtils.copyDataObjects(context, dataObjects, dest, listener);
-        deleteDataObjects(context, dataObjects, listener);
+        deleteDataObjects(dataObjects, listener);
     }
 
-    public static void deleteDataObjects(Context context, final List<DataObject> dataObjects,final OnDataActionPerformedListener listener) {
+    public static void deleteDataObjects(final List<DataObject> dataObjects,final OnDataActionPerformedListener listener) {
         for(DataObject object : dataObjects) {
             object.getFile().setWritable(true);
             if(object.getFile().isDirectory()) {
@@ -32,7 +32,7 @@ public class DataObjectActionsUtils {
                 object.getFile().delete();
             }
         }
-        //listener.onDataActionPerformed();
+        listener.onDataActionPerformed();
     }
 
     public static boolean deleteDirectory(File path) {
