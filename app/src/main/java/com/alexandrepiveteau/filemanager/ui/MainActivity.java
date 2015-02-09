@@ -229,7 +229,7 @@ public class MainActivity extends Activity implements
             case DELETE:
                 showFab = true;
                 showContFab = false;
-                DataObjectActionsUtils.deleteDataObjects(this, mItemsSelected, this);
+                DataObjectActionsUtils.deleteDataObjects(mItemsSelected, this);
                 break;
             case RENAME:
                 showFab = true;
