@@ -24,7 +24,7 @@ public class DataObject {
     private int icon;
     private String name;
 
-    public static List<DataObject> getFilesFrom(Context context, File path) {
+    public static List<DataObject> getFilesFrom(Context context, File path, String query) {
         List<DataObject> fileList = new ArrayList<DataObject>();
         for (File f : path.listFiles()) {
             if(f.isHidden()) {
@@ -39,14 +39,15 @@ public class DataObject {
                 obj.setFile(f);
                 obj.setName(fileName);
                 obj.setDescription(c.getTime().toLocaleString());
-                fileList.add(obj);
+                if(obj.getName().contains(query))
+                    fileList.add(obj);
             }
         }
         Collections.sort(fileList, new DataObjectAlphabeticalComparator());
         return fileList;
     }
 
-    public static List<DataObject> getDirectoriesFrom(Context context, File path) {
+    public static List<DataObject> getDirectoriesFrom(Context context, File path, String query) {
         List<DataObject> directoryList = new ArrayList<DataObject>();
         for (File f : path.listFiles()) {
             if(f.isHidden()) {
@@ -61,7 +62,8 @@ public class DataObject {
                 obj.setFile(f);
                 obj.setName(fileName);
                 obj.setDescription(c.getTime().toLocaleString());
-                directoryList.add(obj);
+                if(obj.getName().contains(query))
+                    directoryList.add(obj);
             }
         }
         Collections.sort(directoryList, new DataObjectAlphabeticalComparator());

@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -59,7 +60,8 @@ public class MainActivity extends Activity implements
         OnDataObjectInfoClickListener,
         OnDataObjectLongClickListener,
         OnDataActionPerformedListener,
-        OnNavigationItemClickListener {
+        OnNavigationItemClickListener,
+        SearchView.OnQueryTextListener{
 
     private static final String KEY_DIRECTORY = "KEY_DIRECTORY";
 
@@ -70,6 +72,7 @@ public class MainActivity extends Activity implements
     private File dir;
     private List<DataObject> mFiles;
     private List<DataObject> mFolders;
+    private String mQuery;
 
     private FloatingActionButton mContextualFloatingActionButton;
 
@@ -81,6 +84,7 @@ public class MainActivity extends Activity implements
     private FloatingActionButton mFloatingActionButton;
     private RecyclerView mListView;
     private RecyclerView mNavigationListView;
+    private SearchView mSearchView;
     private TextView mTitle;
     private Toolbar mToolbar;
 
@@ -91,7 +95,7 @@ public class MainActivity extends Activity implements
                 File oldDir = dir;
                 try {
                     dir = dir.getParentFile();
-                    setDocumentsList(dir);
+                    setDocumentsList(dir, mQuery);
                 } catch (Exception e) {
                     dir = oldDir;
                 }
@@ -140,6 +144,7 @@ public class MainActivity extends Activity implements
         setContentView(R.layout.activity_main);
 
         dir = Environment.getExternalStorageDirectory();
+        mQuery = "";
 
         mBackPressedCalendar = Calendar.getInstance();
 
@@ -175,7 +180,7 @@ public class MainActivity extends Activity implements
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
-        setDocumentsList(dir);
+        setDocumentsList(dir, mQuery);
     }
 
     @Override
@@ -200,6 +205,10 @@ public class MainActivity extends Activity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        mQuery = "";
+
+        mSearchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        mSearchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -212,7 +221,7 @@ public class MainActivity extends Activity implements
     @Override
     public void onDataActionPerformed() {
         mItemsSelected.clear();
-        setDocumentsList(dir);
+        setDocumentsList(dir, mQuery);
     }
 
     @Override
@@ -254,14 +263,14 @@ public class MainActivity extends Activity implements
     public void onDataItemClick(DataObject dataObject) {
         if(ZipUtils.isZipDataObject(dataObject)) {
             ZipUtils.unzipDataObject(dataObject, this);
-            setDocumentsList(dir);
+            setDocumentsList(dir, mQuery);
             return;
         }
         else {
             File oldDir = dir;
             try {
                 dir = dataObject.getFile();
-                setDocumentsList(dir);
+                setDocumentsList(dir, mQuery);
             } catch (Exception e) {
                 dir = DataObjectOpenerUtils.openFile(oldDir, dir, this);
             }
@@ -337,7 +346,7 @@ public class MainActivity extends Activity implements
                 return;
         }
         try {
-            setDocumentsList(dir);
+            setDocumentsList(dir, mQuery);
         }
         catch (Exception e) {
             dir = oldDir;
@@ -364,10 +373,23 @@ public class MainActivity extends Activity implements
     }
 
     @Override
+    public boolean onQueryTextChange(String newText) {
+        mQuery = newText;
+        setDocumentsList(dir, mQuery);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        onQueryTextChange(query);
+        return true;
+    }
+
+    @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         dir = new File(savedInstanceState.getString(KEY_DIRECTORY, Environment.getExternalStorageDirectory().getPath()));
-        setDocumentsList(dir);
+        setDocumentsList(dir, mQuery);
     }
 
     @Override
@@ -376,9 +398,9 @@ public class MainActivity extends Activity implements
         outState.putString(KEY_DIRECTORY, dir.getPath());
     }
 
-    private void setDocumentsList(File file) {
-        mFolders = DataObject.getDirectoriesFrom(this, file);
-        mFiles = DataObject.getFilesFrom(this, file);
+    private void setDocumentsList(File file, String sequenceSearched) {
+        mFolders = DataObject.getDirectoriesFrom(this, file, sequenceSearched);
+        mFiles = DataObject.getFilesFrom(this, file, sequenceSearched);
         mFilesAdapter = new FileListAdapter(this, mFolders, mFiles, this, this, this);
         mListView.setAdapter(mFilesAdapter);
         mActionBarManager.setFile(dir);
