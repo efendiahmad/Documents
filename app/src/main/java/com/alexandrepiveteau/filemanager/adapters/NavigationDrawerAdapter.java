@@ -24,14 +24,16 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<RecyclerView.V
             R.drawable.ic_navigation_dcim,
             R.drawable.ic_navigation_music,
             R.drawable.ic_navigation_download,
-            R.drawable.ic_navigation_rate};
+            R.drawable.ic_navigation_rate,
+            R.drawable.ic_navigation_licenses};
 
     private static final int[] NAVIGATION_ITEMS_TITLES = {
             R.string.internal_storage,
             R.string.dcim,
             R.string.music,
             R.string.downloads,
-            R.string.rate_on_play_store};
+            R.string.rate_on_play_store,
+            R.string.licenses};
 
     private OnNavigationItemClickListener mListener;
 

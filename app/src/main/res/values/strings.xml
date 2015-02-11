@@ -4,6 +4,7 @@
     <!--General Strings-->
     <string name="app_name">Documents</string>
     <string name="hello_world">Hello world!</string>
+    <string name="licenses">Licenses</string>
     <string name="my_files">My files</string>
     <string name="rate_on_play_store">Rate on the Play Store</string>
 

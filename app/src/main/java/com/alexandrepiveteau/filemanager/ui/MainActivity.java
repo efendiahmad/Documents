@@ -43,6 +43,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import de.psdev.licensesdialog.LicensesDialog;
+import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
+import de.psdev.licensesdialog.licenses.BSD3ClauseLicense;
+import de.psdev.licensesdialog.licenses.License;
+import de.psdev.licensesdialog.licenses.MITLicense;
+import de.psdev.licensesdialog.model.Notice;
+import de.psdev.licensesdialog.model.Notices;
+
 
 public class MainActivity extends Activity implements
         View.OnClickListener,
@@ -318,6 +326,14 @@ public class MainActivity extends Activity implements
                 Intent i = new Intent(android.content.Intent.ACTION_VIEW);
                 i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.alexandrepiveteau.filemanager"));
                 startActivity(i);
+                return;
+            case 6:
+                final Notices notices = new Notices();
+                notices.addNotice(new Notice("Documents", "", "Alexandre Piveteau", new BSD3ClauseLicense()));
+                notices.addNotice(new Notice("Zip4j", "http://www.lingala.net/zip4j/", "Srikanth Reddy Lingala", new ApacheSoftwareLicense20()));
+                notices.addNotice(new Notice("FloatingActionButton", "", "Oleksandr Melnykov", new MITLicense()));
+
+                new LicensesDialog.Builder(this).setNotices(notices).setIncludeOwnLicense(true).build().show();
                 return;
         }
         try {
