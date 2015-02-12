@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--General Strings-->
+    <string name="app_name">Documents</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="licenses">Licenses</string>
+    <string name="my_files">Mes fichiers</string>
+    <string name="rate_on_play_store">Noter sur le Play Store</string>
+
+    <!--String for the action bar-->
+    <string name="action_settings">Paramètres</string>
+    <string name="action_search">Rechercher</string>
+    <string name="drawer_open">Menu ouvert</string>
+    <string name="drawer_close">Menu fermé</string>
+
+    <!--Strings for the dialogs-->
+    <string name="cancel">Annuler</string>
+    <string name="copy">Copier</string>
+    <string name="cut">Couper</string>
+    <string name="data_object_name">Nom: </string>
+    <string name="data_object_path">Répertoire: </string>
+    <string name="data_object_modification_date">Dernière modification:</string>
+    <string name="delete">Supprimer</string>
+    <string name="file_info">Propriétés</string>
+    <string name="ok">OK</string>
+    <string name="select_action">Sélectionnez l\'action:</string>
+    <string name="rename">Renommer</string>
+
+    <!--Strings for the main adapter-->
+    <string name="files">Fichiers</string>
+    <string name="folders">Dossiers</string>
+    <string name="no_files">Il n\'y a pas de fichiers à montrer</string>
+    <string name="no_folders">Il n\'y a pas de dossiers à montrer</string>
+
+    <!--Strings for some particular folders name-->
+    <string name="dcim">DCIM</string>
+    <string name="downloads">Téléchargements</string>
+    <string name="internal_storage">Stockage interne</string>
+    <string name="music">Musique</string>
+    <string name="root">Racine</string>
+
+    <!--String for the informative Toasts-->
+    <string name="access_denied">Désolé, mais vous n\'avez pas les droits pour effectuer cette action.</string>
+    <string name="action_cancelled">Action annulée !</string>
+    <string name="exit_application">Clickez de nouveau pour quitter!</string>
+    <string name="file_unzipped_at">Le fichier à été correctement décompressé à l\'emplacement</string>
+    <string name="install_compatible_app">Impossibilité d\'ouvrir le fichier. Avez-vous au moins une application compatible avec ce type de fichiers ?.</string>
+    <string name="rename_too_many_items">Vous ne pouvez renommer qu\'un seul élément à la fois!</string>
+
+</resources>
