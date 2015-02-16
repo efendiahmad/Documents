@@ -29,7 +29,7 @@
 
     <ImageButton
         android:alpha="0.54"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:background="@drawable/ripple_round_background"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:id="@+id/file_info_button"
