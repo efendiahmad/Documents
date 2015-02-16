@@ -8,8 +8,8 @@ android {
         applicationId "com.alexandrepiveteau.filemanager"
         minSdkVersion 11
         targetSdkVersion 21
-        versionCode 20150212
-        versionName "1.0-Beta"
+        versionCode 20150216
+        versionName "1.1-Beta"
     }
     buildTypes {
         release {
