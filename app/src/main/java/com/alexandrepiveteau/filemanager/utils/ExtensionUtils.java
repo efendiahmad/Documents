@@ -56,19 +56,19 @@ public class ExtensionUtils {
         } else if (containsExtension(file.getPath(), COMPRESSED_EXTENSIONS)) {
             return R.drawable.ic_file_compressed;
         } else if (containsExtension(file.getPath(), DOCUMENTS_EXTENSIONS)) {
-            return R.drawable.ic_file_document;
+            return R.drawable.ic_file_default; //Find good icon
         } else if (containsExtension(file.getPath(), MUSIC_EXTENSIONS)) {
             return R.drawable.ic_file_music;
         } else if (containsExtension(file.getPath(), MOVIES_EXTENSIONS)) {
             return R.drawable.ic_file_movie;
-        } else if (containsExtension(file.getPath(), PDF_EXTENSIONS)) {
-            return R.drawable.ic_file_pdf;
         } else if (containsExtension(file.getPath(), PHOTOS_EXTENSIONS)) {
             return R.drawable.ic_file_photo;
+        } else if (containsExtension(file.getPath(), PDF_EXTENSIONS)) {
+            return R.drawable.ic_file_default; //Find good icon
         } else if (containsExtension(file.getPath(), PRESENTATIONS_EXTENSIONS)) {
-            return R.drawable.ic_file_presentation;
+            return R.drawable.ic_file_default; //Find good icon
         } else if (containsExtension(file.getPath(), SHEETS_EXTENSIONS)) {
-            return R.drawable.ic_file_sheet;
+            return R.drawable.ic_file_default; //Find good icon
         } else {
             return R.drawable.ic_file_default;
         }
