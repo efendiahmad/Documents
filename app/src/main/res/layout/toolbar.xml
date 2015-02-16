@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Toolbar
+<android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/material_light_blue_500"
     android:elevation="@dimen/elevation_action_bar"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/action_bar_height"
-    android:popupTheme="@android:style/Theme.Material.Light"
-    android:theme="@android:style/Theme.Material.Light.DarkActionBar">
+    android:popupTheme="@style/Theme.AppCompat.Light"
+    android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
     <RelativeLayout
         android:layout_height="match_parent"
@@ -27,4 +27,4 @@
             android:singleLine="true"/>
     </RelativeLayout>
 
-</Toolbar>
+</android.support.v7.widget.Toolbar>
