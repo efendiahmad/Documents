@@ -339,7 +339,6 @@ public class MainActivity extends ActionBarActivity implements
                 return;
             case 6:
                 final Notices notices = new Notices();
-                notices.addNotice(new Notice("Documents", "", "Alexandre Piveteau", new BSD3ClauseLicense()));
                 notices.addNotice(new Notice("Zip4j", "http://www.lingala.net/zip4j/", "Srikanth Reddy Lingala", new ApacheSoftwareLicense20()));
                 notices.addNotice(new Notice("FloatingActionButton", "", "Oleksandr Melnykov", new MITLicense()));
 
