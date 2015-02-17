@@ -22,4 +22,8 @@
     <dimen name="file_type_padding_left">72dp</dimen>
     <dimen name="navigation_drawer_header_height">186dp</dimen>
     <dimen name="navigation_drawer_width">288dp</dimen>
+
+    <!--Values for some layout elements-->
+    <integer name="file_list_num_columns">1</integer>
+    <bool name="show_big_fab">false</bool>
 </resources>

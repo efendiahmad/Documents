@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -157,7 +158,7 @@ public class MainActivity extends ActionBarActivity implements
         mTitle = (TextView) findViewById(R.id.toolbar_title);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        mListView.setLayoutManager(new LinearLayoutManager(this));
+        mListView.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.file_list_num_columns)));
         mListView.setHasFixedSize(true);
 
         mNavigationListView.setLayoutManager(new LinearLayoutManager(this));
@@ -165,8 +166,20 @@ public class MainActivity extends ActionBarActivity implements
 
         mNavigationListView.setAdapter(new NavigationDrawerAdapter(this));
 
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
-        mActionBarManager = new ActionBarManager(this,mContextualFloatingActionButton , mFloatingActionButton, mTitle);
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                float moveFactor = (mNavigationListView.getWidth() * slideOffset * 0.25f);
+                if(mContextualFloatingActionButton.isVisible())
+                    mContextualFloatingActionButton.setTranslationX(moveFactor);
+                //if(getResources().getBoolean(R.bool.show_big_fab)) {
+                    //mListView.setTranslationX(moveFactor*4f);
+                //}
+            }
+        };
+        mActionBarManager = new ActionBarManager(this, mContextualFloatingActionButton , mFloatingActionButton, mTitle);
         mDrawerLayout.setStatusBarBackground(R.color.material_light_blue_700);
 
         isActionPending = false;

@@ -27,7 +27,7 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
         mTitleText = titleText;
         mPosition = position;
 
-        boolean showDivider = mPosition != 0;
+        boolean showDivider = mPosition != 0 && mTitle.getResources().getInteger(R.integer.file_list_num_columns) == 1;
 
         if(showDivider) {
             mDivider.setVisibility(View.VISIBLE);

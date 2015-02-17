@@ -29,6 +29,10 @@ public class ActionBarManager {
         mContextualFloatingActionButton = contextualFloatingActionButton;
         mFloatingActionButton = floatingActionButton;
         mTitle = title;
+
+        if(context.getResources().getBoolean(R.bool.show_big_fab)) {
+            mFloatingActionButton.setType(FloatingActionButton.TYPE_NORMAL);
+        }
     }
 
     private String getTitle() {

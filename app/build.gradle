@@ -8,12 +8,16 @@ android {
         applicationId "com.alexandrepiveteau.filemanager"
         minSdkVersion 11
         targetSdkVersion 21
-        versionCode 20150217
-        versionName "1.1.1-Beta"
+        versionCode 20150218
+        versionName "1.1.2-Beta"
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

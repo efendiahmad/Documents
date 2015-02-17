@@ -9,4 +9,8 @@
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
+    <item android:id="@+id/create"
+        android:title="@string/action_create"
+        app:showAsAction="never" />
+
 </menu>
