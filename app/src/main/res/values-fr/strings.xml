@@ -9,7 +9,9 @@
     <string name="rate_on_play_store">Noter sur le Play Store</string>
 
     <!--String for the action bar-->
-    <string name="action_create">Créer</string>
+    <string name="action_create">Nouveau...</string>
+    <string name="action_create_file">Nouveau fichier</string>
+    <string name="action_create_folder">Nouveau dossier</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_search">Rechercher</string>
     <string name="drawer_open">Menu ouvert</string>

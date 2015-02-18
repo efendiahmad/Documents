@@ -35,6 +35,7 @@ import com.alexandrepiveteau.filemanager.files.DataObjectAction;
 import com.alexandrepiveteau.filemanager.managers.ActionBarManager;
 import com.alexandrepiveteau.filemanager.ui.listeners.OnDataActionPerformedListener;
 import com.alexandrepiveteau.filemanager.ui.listeners.OnNavigationItemClickListener;
+import com.alexandrepiveteau.filemanager.utils.DataObjectActionsCreateUtils;
 import com.alexandrepiveteau.filemanager.utils.DataObjectActionsUtils;
 import com.alexandrepiveteau.filemanager.utils.DataObjectOpenerUtils;
 import com.alexandrepiveteau.filemanager.utils.FilesUtils;
@@ -374,6 +375,12 @@ public class MainActivity extends ActionBarActivity implements
             return true;
         }
         switch(item.getItemId()) {
+            case R.id.create_file:
+                DataObjectActionsCreateUtils.createDataObject(false, this, dir, this);
+                return true;
+            case R.id.create_folder:
+                DataObjectActionsCreateUtils.createDataObject(true, this, dir, this);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
