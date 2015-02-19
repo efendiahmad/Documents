@@ -1,5 +1,6 @@
 package com.alexandrepiveteau.filemanager.utils;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.alexandrepiveteau.filemanager.files.DataObject;
@@ -14,11 +15,11 @@ import java.util.List;
 
 public class DataObjectActionsUtils {
 
-    public static void copyDataObjects(Context context, final List<DataObject> dataObjects, final List<File> dest ,final OnDataActionPerformedListener listener) {
+    public static void copyDataObjects(Activity context, final List<DataObject> dataObjects, final List<File> dest ,final OnDataActionPerformedListener listener) {
         DataObjectActionsCopyUtils.copyDataObjects(context, dataObjects, dest, listener);
     }
 
-    public static void cutDataObjects(Context context, final List<DataObject> dataObjects, final List<File> dest ,final OnDataActionPerformedListener listener) {
+    public static void cutDataObjects(Activity context, final List<DataObject> dataObjects, final List<File> dest ,final OnDataActionPerformedListener listener) {
         DataObjectActionsCopyUtils.copyDataObjects(context, dataObjects, dest, listener);
         deleteDataObjects(dataObjects, listener);
     }

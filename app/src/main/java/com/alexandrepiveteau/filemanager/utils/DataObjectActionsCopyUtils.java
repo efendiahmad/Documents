@@ -1,5 +1,6 @@
 package com.alexandrepiveteau.filemanager.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -21,20 +22,29 @@ import java.util.List;
 
 public class DataObjectActionsCopyUtils {
 
-    public static void copyDataObjects(Context context, final List<DataObject> dataObjects, final List<File> dest ,final OnDataActionPerformedListener listener) {
-        int i = 0;
-        for(DataObject dataObject : dataObjects) {
-            try {
-                copyFolder(dataObject.getFile(), dest.get(i));
-            }
-            catch (IOException e) {
-                Log.e("FileManager", "Error while copying files");
-                break;
-            }
-            i++;
+    public static void copyDataObjects(final Activity context, final List<DataObject> dataObjects, final List<File> dest ,final OnDataActionPerformedListener listener) {
+        for(final DataObject dataObject : dataObjects) {
+            new Thread() {
+                 @Override
+                 public void run() {
+                    super.run();
+                    try {
+                        copyFolder(dataObject.getFile(), dest.get(dataObjects.indexOf(dataObject)));
+                        context.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onDataActionPerformed();
+                            }
+                        });
+                    }
+                    catch (IOException e) {
+                        Log.e("FileManager", "Error while copying files");
+                    }
+                }
+            }.start();
         }
-        listener.onDataActionPerformed();
     }
+
     public static void copyFolder(File src, File dest)
             throws IOException{
 
